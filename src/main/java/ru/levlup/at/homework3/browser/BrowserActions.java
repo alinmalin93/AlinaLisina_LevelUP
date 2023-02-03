@@ -2,13 +2,12 @@ package ru.levlup.at.homework3.browser;
 
 import static ru.levlup.at.homework3.browser.BrowserStarter.driver;
 
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 
 public class BrowserActions {
 
@@ -37,5 +36,9 @@ public class BrowserActions {
 
     public static Boolean isSelected(By selector) {
         return  driver.findElement(selector).isSelected();
+    }
+
+    public static void refresh() {
+        driver.navigate().refresh();
     }
 }

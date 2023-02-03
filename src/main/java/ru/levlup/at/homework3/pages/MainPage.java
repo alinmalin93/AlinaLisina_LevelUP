@@ -12,6 +12,9 @@ public class MainPage {
     public static final By SEND_BTN = By.cssSelector(".qa-LeftColumn>div>div:nth-child(7)");
     public static final By USER_ACC_BTN = By.cssSelector("div.legouser>a.user-account");
     public static final By LOGOUT_BTN = By.cssSelector(".menu__group>li:nth-child(6)");
+    public static final By OPEN_TEST_FOLDER = By.cssSelector(".qa-LeftColumn-UserFolderNodeContent>div");
+
+    public static final By CHECKBOX_IN_INCOMING = By.cssSelector("#nb-checkbox_0");
 
     public static void logOut() {
         click(USER_ACC_BTN);
