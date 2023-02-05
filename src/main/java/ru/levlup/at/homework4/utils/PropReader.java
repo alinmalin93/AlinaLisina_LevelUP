@@ -34,10 +34,4 @@ public class PropReader {
         return properties.getProperty("address");
     }
 
-    public static String getLoginName() throws IOException {
-        properties.load(path);
-        return properties.getProperty("loginName1") + " " + properties.getProperty("loginName2");
-    }
-
-
 }
