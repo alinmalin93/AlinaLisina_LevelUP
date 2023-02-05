@@ -1,7 +1,5 @@
 package ru.levlup.at.homework3.browser;
 
-import static ru.levlup.at.homework3.browser.BrowserStarter.driver;
-
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -9,10 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BrowserActions {
+public class BrowserActions extends BrowserStarter {
+
+    public static WebElement findElem(By elem) {
+        return driver.findElement(elem);
+    }
 
     public static void input(By selector, String text) {
-        driver.findElement(selector).sendKeys(text);
+        findElem(selector).sendKeys(text);
     }
 
     public static void click(By selector) {
@@ -31,8 +33,10 @@ public class BrowserActions {
     }
 
     public static String getText(By selector) {
-        return driver.findElement(selector).getAttribute("textContent");
+        WebElement elem = wait.until(ExpectedConditions.visibilityOf(findElem(selector)));
+        return elem.getAttribute("textContent");
     }
+
 
     public static Boolean isSelected(By selector) {
         return  driver.findElement(selector).isSelected();

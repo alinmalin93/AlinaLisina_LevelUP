@@ -4,6 +4,7 @@ import static ru.levlup.at.homework3.browser.BrowserActions.click;
 import static ru.levlup.at.homework3.browser.BrowserActions.input;
 import static ru.levlup.at.homework3.pages.AuthorizationPage.LOGIN;
 import static ru.levlup.at.homework3.pages.MainPage.NEW_LETTER_BTN;
+import static ru.levlup.at.homework3.utils.RandomGenerator.RandInt;
 
 import org.openqa.selenium.By;
 
@@ -12,8 +13,8 @@ public class LetterPage {
     public static final By ADDRESS_FIELD = By.cssSelector("#compose-field-1");
     public static final String ADDRESS = LOGIN + "@yandex.ru";
     public static final By THEME_FIELD = By.cssSelector("#compose-field-subject-4");
-    public static final String THEME = "Тест";
-    public static final String THEME2 = "Важно";
+    public static final String THEME = "Тест_" + RandInt();
+    public static final String THEME2 = "Важно_" + RandInt();
     public static final By BODY_FIELD = By.cssSelector(".cke_enable_context_menu");
     public static final String BODY = "Hello!";
     public static final By CLOSE_LETTER_BTN = By.cssSelector(".composeReact__headerButtons>div>button:nth-child(3)");

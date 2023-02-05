@@ -3,7 +3,6 @@ package ru.levelp.at.testhomework3;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.levlup.at.homework3.browser.BrowserActions.click;
 import static ru.levlup.at.homework3.browser.BrowserActions.getText;
-import static ru.levlup.at.homework3.browser.BrowserActions.refresh;
 import static ru.levlup.at.homework3.browser.BrowserStarter.browserClose;
 import static ru.levlup.at.homework3.browser.BrowserStarter.browserSetUp;
 import static ru.levlup.at.homework3.pages.AuthorizationPage.LOGIN;
@@ -11,17 +10,18 @@ import static ru.levlup.at.homework3.pages.AuthorizationPage.LOGIN_NAME;
 import static ru.levlup.at.homework3.pages.AuthorizationPage.authorization;
 import static ru.levlup.at.homework3.pages.DraftPage.BACK_TO_INCOMING;
 import static ru.levlup.at.homework3.pages.DraftPage.DRAFT_ADDRESS;
+import static ru.levlup.at.homework3.pages.DraftPage.DRAFT_BODY;
+import static ru.levlup.at.homework3.pages.DraftPage.DRAFT_THEME;
 import static ru.levlup.at.homework3.pages.DraftPage.EMPTY_BOX;
 import static ru.levlup.at.homework3.pages.DraftPage.EMPTY_BOX_MESSAGE;
 import static ru.levlup.at.homework3.pages.DraftPage.LETTER_BTN;
+import static ru.levlup.at.homework3.pages.LetterPage.BODY;
 import static ru.levlup.at.homework3.pages.LetterPage.CLOSE_LETTER_BTN;
 import static ru.levlup.at.homework3.pages.LetterPage.SEND_LETTER_BTN;
+import static ru.levlup.at.homework3.pages.LetterPage.THEME;
 import static ru.levlup.at.homework3.pages.LetterPage.createLetter;
-import static ru.levlup.at.homework3.pages.LetterPage.createLetter2;
 import static ru.levlup.at.homework3.pages.MainPage.AUTHORIZATION_CHECK_ELEM;
-import static ru.levlup.at.homework3.pages.MainPage.CHECKBOX_IN_INCOMING;
 import static ru.levlup.at.homework3.pages.MainPage.DRAFT_BTN;
-import static ru.levlup.at.homework3.pages.MainPage.OPEN_TEST_FOLDER;
 import static ru.levlup.at.homework3.pages.MainPage.SEND_BTN;
 import static ru.levlup.at.homework3.pages.MainPage.logOut;
 import static ru.levlup.at.homework3.pages.SendLetterPage.SEND_ADDRESS;
@@ -32,7 +32,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class EmailTest {
+public class FirstEmailTest {
 
     @BeforeAll
     static void beforeAll() {
@@ -56,7 +56,9 @@ public class EmailTest {
         createLetter(); // создаем письмо
         click(CLOSE_LETTER_BTN); // закрываем письмо
         click(DRAFT_BTN); // переходим в Черновики
-        assertEquals(LOGIN_NAME, getText(DRAFT_ADDRESS)); // проверяем наличие письма в Черновиках
+        assertEquals(LOGIN_NAME, getText(DRAFT_ADDRESS)); // проверяем наличие письма в Черновиках по отправителю
+        assertEquals(THEME, getText(DRAFT_THEME)); // проверяем наличие письма в Черновиках по теме
+        assertEquals(BODY, getText(DRAFT_BODY)); // проверяем наличие письма в Черновиках по телу
         click(LETTER_BTN); // открываем письмо
         click(SEND_LETTER_BTN); // отправляем письмо
         click(BACK_TO_INCOMING); // переходим во входящие
@@ -66,27 +68,4 @@ public class EmailTest {
         assertEquals(LOGIN_NAME, getText(SEND_ADDRESS)); // проверяем наличие письма в Отправленных
         logOut(); // разлогиниваемся
     }
-
-    @Test
-    void speedyGonsalesTest2() {
-        authorization(); // авторизируемся
-        assertEquals(LOGIN, getText(AUTHORIZATION_CHECK_ELEM)); // проверяем авторизацию
-        createLetter(); // создаем письмо
-        click(SEND_LETTER_BTN); // отправляем письмо
-        click(BACK_TO_INCOMING); // открываем Входящие
-        click(OPEN_TEST_FOLDER); // переходим в папку Тест
-        assertEquals(LOGIN_NAME, getText(SEND_ADDRESS)); // сверяем отправителя
-        logOut();
-    }
-
-    @Test
-    void speedyGonsalesTest3() throws InterruptedException {
-        authorization(); // авторизируемся
-        assertEquals(LOGIN, getText(AUTHORIZATION_CHECK_ELEM)); // проверяем авторизацию
-        createLetter2(); // создаем письмо
-        click(SEND_LETTER_BTN); // отправляем письмо
-        click(BACK_TO_INCOMING); // открываем Входящие
-        refresh();
-        assertEquals(LOGIN_NAME, getText(SEND_ADDRESS)); // сверяем отправителя
-        click(CHECKBOX_IN_INCOMING);
-    }}
+}
