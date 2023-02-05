@@ -2,6 +2,7 @@ package ru.levlup.at.homework4.pages;
 
 import static ru.levlup.at.homework4.pages.MainPage.newLetterBtn;
 import static ru.levlup.at.homework4.utils.PropReader.getAddress;
+import static ru.levlup.at.homework4.utils.Randomizer.RandInt;
 
 import java.io.IOException;
 import org.openqa.selenium.WebDriver;
@@ -32,9 +33,21 @@ public class LetterPage extends BrowserStarter {
     @FindBy(css = "div.composeReact__footer>div>div>div:nth-child(1)>button")
     private WebElement sendLetterBtn;
 
-    public static final String THEME = "Тест";
-    public static final String THEME2 = "Важно";
-    public static final String BODY = "Hello!";
+    protected static final String THEME = "Тест_" + RandInt();
+    protected static final String THEME2 = "Важно_" + RandInt();
+    protected static final String BODY = "Hello!";
+
+    public static String getTheme() {
+        return THEME;
+    }
+
+    public static String getTheme2() {
+        return THEME2;
+    }
+
+    public static String getBody() {
+        return BODY;
+    }
 
     public void closeLetter() {
         closeLetterBtn.click();

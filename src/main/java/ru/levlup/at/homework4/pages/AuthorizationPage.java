@@ -17,7 +17,7 @@ public class AuthorizationPage extends BrowserStarter {
         super(driver);
     }
 
-    public static final String LOGIN_NAME = "Тест Тестовый";
+    private static final String LOGIN_NAME = "Тест Тестовый";
 
     @FindBy (css = ".AuthLoginInputToggle-wrapper>div:nth-child(2)")
     private WebElement phoneBtn;
@@ -43,6 +43,10 @@ public class AuthorizationPage extends BrowserStarter {
         enterSubmitBtn.click();
         wait.until(ExpectedConditions.elementToBeClickable(passwordField)).sendKeys(getPassword());
         enterSubmitBtn.click();
+    }
+
+    public static String getLoginName() {
+        return LOGIN_NAME;
     }
 
 }
